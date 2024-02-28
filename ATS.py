@@ -1,3 +1,5 @@
+pip install matplotlib
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import streamlit as st
@@ -6,6 +8,8 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import string
+import nltk
+nltk.download('punkt')
 
 st.title("Application Tracking System")
 
