@@ -48,7 +48,7 @@ if button_clicked:
             
             return ats, missing_words
         
-    ats, missing words = ATS(uploaded_CV, uploaded_job)
+    ats, missing_words = ATS(uploaded_CV, uploaded_job)
     st.subheader("SCORE")
     st.write(ats)
     st.subheader("Missing Words")
