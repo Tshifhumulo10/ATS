@@ -55,7 +55,7 @@ if button_clicked:
         
         return missing_words
     
-    result = find_missing_words(uploaded_CV, uploaded_job)
+    Result = find_missing_words(uploaded_CV, uploaded_job)
     
     st.subheader("Missing Words")
-    st.write(result)
+    st.write(Result)
