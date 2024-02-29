@@ -46,13 +46,13 @@ if button_clicked:
 
             missing_words = work_tokens.difference(cv_tokens)
             
-            return ats, missing words
+            return ats, missing_words
         
     ats, missing words = ATS(uploaded_CV, uploaded_job)
     st.subheader("SCORE")
     st.write(ats)
     st.subheader("Missing Words")
-    st.write(missing words)
+    st.write(missing_words)
     
     
    
