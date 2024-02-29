@@ -32,30 +32,27 @@ if button_clicked:
             # Calculate cosine similarity
             ats = cosine_similarity(tfidf_cv, tfidf_job)[0][0]
             ats *= 100
-            return ats
+
+            work_tokens = set(word_tokenize(uploaded_job.lower()))
+            cv_tokens = set(word_tokenize(uploaded_CV.lower()))
+
+            stop_words = set(stopwords.words('english'))
+            work_tokens = work_tokens.difference(stop_words)
+            cv_tokens = cv_tokens.difference(stop_words)
         
-    result = ATS(uploaded_CV, uploaded_job)
+            punctuation = set(string.punctuation)
+            work_tokens = work_tokens.difference(punctuation)
+            cv_tokens = cv_tokens.difference(punctuation)
+
+            missing_words = work_tokens.difference(cv_tokens)
+            
+            return ats, missing words
+        
+    ats, missing words = ATS(uploaded_CV, uploaded_job)
     st.subheader("SCORE")
-    st.write(result)
-    
-    def find_missing_words(uploaded_CV, uploaded_job):
-    
-        work_tokens = set(word_tokenize(uploaded_job.lower()))
-        cv_tokens = set(word_tokenize(uploaded_CV.lower()))
-
-        stop_words = set(stopwords.words('english'))
-        work_tokens = work_tokens.difference(stop_words)
-        cv_tokens = cv_tokens.difference(stop_words)
-        
-        punctuation = set(string.punctuation)
-        work_tokens = work_tokens.difference(punctuation)
-        cv_tokens = cv_tokens.difference(punctuation)
-
-        missing_words = work_tokens.difference(cv_tokens)
-        
-        return missing_words
-    
-    Result = find_missing_words(uploaded_CV, uploaded_job)
-    
+    st.write(ats)
     st.subheader("Missing Words")
-    st.write(Result)
+    st.write(missing words)
+    
+    
+   
